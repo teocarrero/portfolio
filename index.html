@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teo Carrero Valls · ASIX · Redes, sistemas e IoT</title>
+<meta name="description" content="Portfolio de Teo Carrero Valls, estudiante de ASIX en La Salle Gràcia. Redes, administración de sistemas, IoT y desarrollo de juegos.">
+<meta property="og:title" content="Teo Carrero Valls · Portfolio">
+<meta property="og:description" content="Redes, sistemas e IoT. Estudiante de ASIX en La Salle Gràcia.">
+<style>
+:root{
+  --bg:#05070d; --panel:rgba(16,22,38,.62); --line:rgba(120,160,255,.16);
+  --text:#e6ecff; --muted:#8c97b8; --a:#4df0c4; --b:#6c8cff; --c:#ff5ca8;
+  --mono:"JetBrains Mono","Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,var(--a),var(--b),var(--c))}
+#net{position:fixed;inset:0;z-index:0;pointer-events:none}
+.glow{position:fixed;width:46vw;height:46vw;border-radius:50%;filter:blur(120px);opacity:.18;z-index:0;pointer-events:none}
+.g1{background:var(--b);top:-12vw;left:-10vw}
+.g2{background:var(--a);bottom:-16vw;right:-12vw;opacity:.12}
+main,header.nav,footer{position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(5,7,13,.6);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--mono);font-weight:700;color:var(--a)}
+.logo span{color:var(--muted)}
+.nav ul{display:flex;gap:26px;list-style:none;font-family:var(--mono);font-size:13px}
+.nav ul a{color:var(--muted);transition:.2s}
+.nav ul a:hover{color:var(--a)}
+@media(max-width:700px){.nav ul{display:none}}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;align-items:center;padding:60px 0}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--a);border:1px solid rgba(77,240,196,.35);padding:6px 12px;border-radius:99px;background:rgba(77,240,196,.06)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--a);box-shadow:0 0 12px var(--a);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+h1{font-size:clamp(40px,8vw,88px);line-height:1.02;letter-spacing:-.03em;margin:22px 0 14px}
+h1 .grad{background:linear-gradient(100deg,var(--a),var(--b) 50%,var(--c));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shift 7s linear infinite}
+@keyframes shift{to{background-position:200% 0}}
+.typed{font-family:var(--mono);font-size:clamp(16px,2.4vw,24px);color:var(--muted);min-height:1.6em}
+.typed b{color:var(--text);font-weight:500}
+.caret{display:inline-block;width:10px;height:1.1em;background:var(--a);vertical-align:-3px;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:620px;margin:22px 0 32px;color:var(--muted);font-size:18px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:14px;padding:13px 22px;border-radius:10px;border:1px solid var(--line);background:var(--panel);transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.btn:hover{transform:translateY(-3px);border-color:var(--a);box-shadow:0 10px 30px -10px var(--a)}
+.btn.primary{background:linear-gradient(120deg,var(--a),var(--b));color:#031018;font-weight:700;border:0}
+.stats{display:flex;gap:34px;margin-top:54px;flex-wrap:wrap}
+.stat b{display:block;font-size:34px;font-family:var(--mono);color:var(--a)}
+.stat span{font-size:13px;color:var(--muted);font-family:var(--mono)}
+
+/* SECTIONS */
+section{padding:90px 0}
+.sec-h{font-family:var(--mono);color:var(--a);font-size:14px;margin-bottom:8px}
+h2{font-size:clamp(28px,4.5vw,44px);letter-spacing:-.02em;margin-bottom:38px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;backdrop-filter:blur(10px);transition:.3s;position:relative;overflow:hidden}
+.card:hover{border-color:rgba(77,240,196,.5);transform:translateY(-4px)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(108,140,255,.14),transparent 40%);opacity:0;transition:.3s}
+.card:hover::before{opacity:1}
+.grid{display:grid;gap:22px}
+.g2c{grid-template-columns:1.2fr 1fr}
+.g3c{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.g2c,.g3c{grid-template-columns:1fr}}
+.about p{color:var(--muted);margin-bottom:14px}
+.about p strong{color:var(--text)}
+.kv{font-family:var(--mono);font-size:13px}
+.kv div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line)}
+.kv div:last-child{border:0}
+.kv span{color:var(--muted)}
+.kv em{font-style:normal;color:var(--a)}
+
+/* SKILLS */
+.skill{margin-bottom:16px}
+.skill .row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;margin-bottom:6px}
+.bar{height:6px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--a),var(--b));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font-family:var(--mono);font-size:12px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);color:var(--muted);transition:.2s}
+.chip:hover{color:var(--a);border-color:var(--a)}
+
+/* PROJECTS */
+.proj .ico{font-size:30px;margin-bottom:12px}
+.proj h3{font-size:21px;margin-bottom:8px}
+.proj p{color:var(--muted);font-size:15px;margin-bottom:14px}
+.proj .status{font-family:var(--mono);font-size:11px;color:var(--c);margin-bottom:10px;display:block}
+.proj ul{list-style:none;margin-bottom:16px}
+.proj li{font-size:14px;color:var(--muted);padding-left:18px;position:relative;margin-bottom:5px}
+.proj li::before{content:"▹";position:absolute;left:0;color:var(--a)}
+
+/* IOT LIVE */
+.live{margin-top:22px}
+.live .top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.live .top b{color:var(--a)}
+.vals{display:flex;gap:30px;margin-bottom:8px;flex-wrap:wrap}
+.vals div{font-family:var(--mono)}
+.vals strong{font-size:30px;display:block;color:var(--text)}
+.vals small{color:var(--muted);font-size:12px}
+canvas#spark{width:100%;height:110px;display:block}
+.mqtt{font-family:var(--mono);font-size:12px;color:var(--b);margin-top:8px;word-break:break-all}
+
+/* TIMELINE */
+.tl{border-left:2px solid var(--line);padding-left:26px;margin-left:8px}
+.tl .it{position:relative;margin-bottom:34px}
+.tl .it::before{content:"";position:absolute;left:-35px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--a);box-shadow:0 0 14px var(--a)}
+.tl .when{font-family:var(--mono);font-size:12px;color:var(--a)}
+.tl h4{font-size:18px;margin:2px 0}
+.tl p{color:var(--muted);font-size:15px}
+
+/* TERMINAL */
+.term{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:rgba(4,6,12,.85);box-shadow:0 30px 80px -30px rgba(77,240,196,.25)}
+.term .bar2{display:flex;align-items:center;gap:7px;padding:11px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}
+.term .bar2 i{width:11px;height:11px;border-radius:50%;display:block}
+.term .bar2 span{margin-left:10px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+#out{font-family:var(--mono);font-size:13.5px;padding:18px;height:300px;overflow-y:auto;color:#cfe0ff;white-space:pre-wrap}
+#out .p{color:var(--a)} #out .e{color:var(--c)} #out .h{color:var(--b)}
+.inl{display:flex;gap:8px;padding:0 18px 18px;font-family:var(--mono);font-size:13.5px}
+.inl label{color:var(--a)}
+#cmd{flex:1;background:none;border:0;outline:0;color:var(--text);font:inherit}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact h2{font-size:clamp(32px,6vw,60px)}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+.contact .btns{justify-content:center}
+footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<canvas id="net"></canvas>
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">teo<span>@</span>asix:~$</a>
+    <ul>
+      <li><a href="#about">sobre-mi</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">proyectos</a></li>
+      <li><a href="#path">trayectoria</a></li>
+      <li><a href="#terminal">terminal</a></li>
+      <li><a href="#contact">contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div>
+      <span class="tag"><i class="dot"></i> Disponible para prácticas y oportunidades</span>
+      <h1>Hola, soy <span class="grad">Teo Carrero</span>.</h1>
+      <div class="typed"><span id="typed"></span><span class="caret"></span></div>
+      <p class="lead">Estudiante de ASIX en La Salle Gràcia. Me gusta que las redes funcionen, que los sensores hablen entre sí y construir cosas que de verdad se puedan tocar, desde un ESP32 midiendo temperatura hasta un juego en Roblox.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">▶ Ver proyectos</a>
+        <a class="btn" href="https://www.linkedin.com/in/teo-carrero-valls-b83723320" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="btn" href="#terminal">&gt;_ Abrir terminal</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b data-n="2">0</b><span>curso de ASIX</span></div>
+        <div class="stat"><b data-n="3">0</b><span>proyectos en marcha</span></div>
+        <div class="stat"><b data-n="4">0</b><span>fases de IoT</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about"><div class="wrap">
+    <div class="sec-h rv">01 // sobre-mi</div>
+    <h2 class="rv">Administración de sistemas con mentalidad de maker</h2>
+    <div class="grid g2c">
+      <div class="card about rv">
+        <p>Curso <strong>2º de ASIX</strong> (Administración de Sistemas Informáticos en Red) en <strong>La Salle Gràcia</strong>. Me muevo entre la teoría de redes (módulo CCNA) y la práctica: montar infraestructura, documentarla y que funcione de verdad.</p>
+        <p>Trabajo en equipo en proyectos reales de curso, desde una <strong>infraestructura completa para una asociación</strong> hasta una <strong>práctica IoT con Home Assistant, ESP32 y MQTT</strong>. Y en mi tiempo libre desarrollo <strong>juegos en Roblox</strong>, porque programar también es crear.</p>
+        <p>Documento todo lo que hago (mi vault de Obsidian es mi segundo cerebro) porque un sistema que no está documentado no está terminado.</p>
+      </div>
+      <div class="card kv rv">
+        <div><span>nombre</span><em>Teo Carrero Valls</em></div>
+        <div><span>estudios</span><em>ASIX · La Salle Gràcia</em></div>
+        <div><span>ubicación</span><em>Sant Feliu de Llobregat</em></div>
+        <div><span>idiomas</span><em>Castellano · Català</em></div>
+        <div><span>foco</span><em>redes · sistemas · IoT</em></div>
+        <div><span>estado</span><em>● buscando prácticas</em></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- SKILLS -->
+  <section id="skills"><div class="wrap">
+    <div class="sec-h rv">02 // skills</div>
+    <h2 class="rv">Lo que uso a diario</h2>
+    <div class="grid g2c">
+      <div class="card rv">
+        <div class="skill"><div class="row"><span>Redes (CCNA)</span><span>75%</span></div><div class="bar"><i data-w="75"></i></div></div>
+        <div class="skill"><div class="row"><span>Administración de sistemas</span><span>70%</span></div><div class="bar"><i data-w="70"></i></div></div>
+        <div class="skill"><div class="row"><span>IoT · MQTT · Home Assistant</span><span>70%</span></div><div class="bar"><i data-w="70"></i></div></div>
+        <div class="skill"><div class="row"><span>Electrónica con ESP32</span><span>60%</span></div><div class="bar"><i data-w="60"></i></div></div>
+        <div class="skill"><div class="row"><span>Lua · Roblox Studio</span><span>55%</span></div><div class="bar"><i data-w="55"></i></div></div>
+        <div class="skill"><div class="row"><span>Documentación técnica</span><span>80%</span></div><div class="bar"><i data-w="80"></i></div></div>
+      </div>
+      <div class="card rv">
+        <div class="sec-h">stack</div>
+        <div class="chips">
+          <span class="chip">Cisco / CCNA</span><span class="chip">Linux</span><span class="chip">Windows Server</span>
+          <span class="chip">TCP/IP</span><span class="chip">VLANs</span><span class="chip">Home Assistant</span>
+          <span class="chip">MQTT</span><span class="chip">ESP32</span><span class="chip">DHT11</span>
+          <span class="chip">Arduino IDE</span><span class="chip">Obsidian</span><span class="chip">Git</span>
+          <span class="chip">Roblox Studio</span><span class="chip">Lua</span><span class="chip">Figma</span>
+        </div>
+        <div class="sec-h" style="margin-top:26px">soft skills</div>
+        <div class="chips">
+          <span class="chip">trabajo en equipo</span><span class="chip">resolución de problemas</span>
+          <span class="chip">autodidacta</span><span class="chip">documentación</span>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- PROJECTS -->
+  <section id="projects"><div class="wrap">
+    <div class="sec-h rv">03 // proyectos</div>
+    <h2 class="rv">Cosas que he construido</h2>
+    <div class="grid g3c">
+      <article class="card proj rv">
+        <div class="ico">📡</div>
+        <span class="status">// en curso · fases 1-2 completadas</span>
+        <h3>Práctica IoT · Home Assistant</h3>
+        <p>Sistema domótico por fases con sensores propios conectados a Home Assistant por MQTT.</p>
+        <ul><li>ESP32 + sensor DHT11 de temperatura y humedad</li><li>Comunicación vía broker MQTT</li><li>Paneles y automatizaciones en Home Assistant</li><li>Trabajo en pareja con entrega en vídeo</li></ul>
+        <div class="chips"><span class="chip">ESP32</span><span class="chip">MQTT</span><span class="chip">Home Assistant</span></div>
+      </article>
+      <article class="card proj rv">
+        <div class="ico">🏢</div>
+        <span class="status">// proyecto de ASIX II · equipo de 4</span>
+        <h3>Infraestructura para una asociación</h3>
+        <p>Diseño de la infraestructura informática completa de una asociación: red, servicios, documento técnico y funcional.</p>
+        <ul><li>Prememoria, documento técnico y funcional</li><li>Wireframes de escritorio y app</li><li>Documentación en vault de Obsidian</li><li>Punto de control 2 en preparación</li></ul>
+        <div class="chips"><span class="chip">Redes</span><span class="chip">Sistemas</span><span class="chip">Documentación</span></div>
+      </article>
+      <article class="card proj rv">
+        <div class="ico">🎮</div>
+        <span class="status">// en desarrollo · side project</span>
+        <h3>Juegos de Roblox</h3>
+        <p>Dos juegos de lanzamiento y progresión con mecánicas propias: <b>Throw Into The Deep</b> (cuanto más profundo, más grande la mascota) y <b>Dino Launch</b> (los animales evolucionan según la distancia).</p>
+        <ul><li>Mascotas y zonas con estética de bloques</li><li>Roblox Studio + Lua</li><li>Modelos 3D con Meshy y Blender</li></ul>
+        <div class="chips"><span class="chip">Roblox Studio</span><span class="chip">Lua</span><span class="chip">Meshy</span></div>
+      </article>
+    </div>
+
+    <div class="card live rv" id="live">
+      <div class="top"><span>// demo en vivo · simulación del sensor del proyecto IoT</span><span>topic: <b>casa/salon/dht11</b></span></div>
+      <div class="vals">
+        <div><strong id="vT">--</strong><small>temperatura °C</small></div>
+        <div><strong id="vH">--</strong><small>humedad %</small></div>
+      </div>
+      <canvas id="spark" height="110"></canvas>
+      <div class="mqtt" id="mq">&gt; esperando mensaje MQTT…</div>
+    </div>
+  </div></section>
+
+  <!-- PATH -->
+  <section id="path"><div class="wrap">
+    <div class="sec-h rv">04 // trayectoria</div>
+    <h2 class="rv">Camino recorrido</h2>
+    <div class="tl">
+      <div class="it rv"><div class="when">2025 → 2027</div><h4>CFGS ASIX · La Salle Gràcia</h4><p>Administración de Sistemas Informáticos en Red. Módulo de redes con preparación CCNA, proyecto de ciclo en grupo y prácticas de IoT.</p></div>
+      <div class="it rv"><div class="when">Experiencia</div><h4>AWERTY | Servicios Informáticos</h4><p>Contacto con el entorno profesional de los servicios informáticos.</p></div>
+      <div class="it rv"><div class="when">Siguiente</div><h4>Buscando prácticas en sistemas y redes</h4><p>Quiero seguir aprendiendo en un equipo real de IT.</p></div>
+    </div>
+  </div></section>
+
+  <!-- TERMINAL -->
+  <section id="terminal"><div class="wrap">
+    <div class="sec-h rv">05 // terminal</div>
+    <h2 class="rv">Pregúntale a mi terminal</h2>
+    <div class="term rv">
+      <div class="bar2"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>teo@asix: ~</span></div>
+      <div id="out"></div>
+      <div class="inl"><label>teo@asix:~$</label><input id="cmd" autocomplete="off" spellcheck="false" placeholder="escribe help"></div>
+    </div>
+  </div></section>
+
+  <!-- CONTACT -->
+  <section id="contact"><div class="wrap contact">
+    <div class="sec-h rv">06 // contacto</div>
+    <h2 class="rv">¿Hablamos?</h2>
+    <p class="rv">Si buscas a alguien con ganas de aprender, que documenta lo que hace y que no se rinde hasta que el ping responde, escríbeme.</p>
+    <div class="btns rv">
+      <a class="btn primary" href="https://www.linkedin.com/in/teo-carrero-valls-b83723320" target="_blank" rel="noopener">in Conectar en LinkedIn</a>
+      <a class="btn" href="https://github.com/teocarrero" target="_blank" rel="noopener">⌥ GitHub</a>
+    </div>
+  </div></section>
+</main>
+<footer>© 2026 Teo Carrero Valls · hecho a mano con HTML, CSS y JS · sin frameworks</footer>
+
+<script>
+/* ===== Red de nodos (fondo) ===== */
+(()=>{
+  const c=document.getElementById('net'),x=c.getContext('2d');
+  let W,H,P=[],m={x:-999,y:-999};
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function rs(){W=c.width=innerWidth;H=c.height=innerHeight;
+    const n=Math.min(90,Math.floor(W*H/18000));
+    P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}));}
+  addEventListener('resize',rs);rs();
+  addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+  function f(){
+    x.clearRect(0,0,W,H);
+    for(const p of P){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);
+      if(d<110){p.x+=dx/d*1.2;p.y+=dy/d*1.2}
+      x.fillStyle='rgba(77,240,196,.7)';x.beginPath();x.arc(p.x,p.y,1.6,0,7);x.fill();
+    }
+    for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){
+      const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);
+      if(d<140){x.strokeStyle=`rgba(108,140,255,${(1-d/140)*.35})`;x.lineWidth=1;x.beginPath();x.moveTo(P[i].x,P[i].y);x.lineTo(P[j].x,P[j].y);x.stroke()}
+    }
+    if(!reduce)requestAnimationFrame(f);
+  }
+  f();
+})();
+
+/* ===== Texto que se escribe ===== */
+(()=>{
+  const el=document.getElementById('typed');
+  const lines=['redes <b>&amp;</b> sistemas','IoT con <b>ESP32 + MQTT</b>','infraestructura <b>documentada</b>','futuro <b>administrador de sistemas</b>'];
+  let l=0,i=0,del=false;
+  function t(){
+    const s=lines[l].replace(/<[^>]+>/g,'');
+    // escribimos con etiquetas respetadas
+    const full=lines[l];
+    let out='',visible=0,inTag=false;
+    for(const ch of full){ if(ch==='<')inTag=true; out+=ch; if(ch==='>'){inTag=false;continue} if(!inTag){visible++; if(visible>=i)break} }
+    el.innerHTML='> '+out;
+    if(!del){ if(i<s.length+4){i++;setTimeout(t,70)} else {del=true;setTimeout(t,1400)} }
+    else { if(i>0){i-=2;if(i<0)i=0;setTimeout(t,30)} else {del=false;l=(l+1)%lines.length;setTimeout(t,300)} }
+  }
+  t();
+})();
+
+/* ===== Reveal, contadores y barras ===== */
+(()=>{
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll?.('.bar i').forEach(b=>b.style.width=b.dataset.w+'%');
+    io.unobserve(e.target);
+  }),{threshold:.15});
+  document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+  document.querySelectorAll('[data-n]').forEach(el=>{
+    const n=+el.dataset.n;let k=0;
+    const t=setInterval(()=>{k++;el.textContent=k;if(k>=n)clearInterval(t)},260);
+  });
+})();
+
+/* ===== Progreso de scroll y nav activa ===== */
+(()=>{
+  const bar=document.getElementById('prog');
+  const links=[...document.querySelectorAll('.nav ul a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    let cur=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<200)cur=i});
+    links.forEach((a,i)=>a.style.color=i===cur?'var(--a)':'');
+  },{passive:true});
+})();
+
+/* ===== Brillo que sigue al ratón en las tarjetas ===== */
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>{
+  const r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+}));
+
+/* ===== Demo IoT simulada ===== */
+(()=>{
+  const cv=document.getElementById('spark'),x=cv.getContext('2d');
+  const vT=document.getElementById('vT'),vH=document.getElementById('vH'),mq=document.getElementById('mq');
+  const data=[];let T=22.4,H=48;
+  function size(){cv.width=cv.clientWidth*devicePixelRatio;cv.height=110*devicePixelRatio}
+  size();addEventListener('resize',()=>{size();draw()});
+  function draw(){
+    const w=cv.width,h=cv.height;x.clearRect(0,0,w,h);
+    if(data.length<2)return;
+    const mn=Math.min(...data)-.5,mx=Math.max(...data)+.5;
+    const g=x.createLinearGradient(0,0,w,0);g.addColorStop(0,'#6c8cff');g.addColorStop(1,'#4df0c4');
+    x.strokeStyle=g;x.lineWidth=2.5*devicePixelRatio;x.beginPath();
+    data.forEach((v,i)=>{const px=i/(30-1)*w,py=h-(v-mn)/(mx-mn)*(h-12)-6;i?x.lineTo(px,py):x.moveTo(px,py)});
+    x.stroke();
+    x.lineTo((data.length-1)/29*w,h);x.lineTo(0,h);x.closePath();
+    const f=x.createLinearGradient(0,0,0,h);f.addColorStop(0,'rgba(77,240,196,.25)');f.addColorStop(1,'rgba(77,240,196,0)');
+    x.fillStyle=f;x.fill();
+  }
+  function tick(){
+    T+=(Math.random()-.5)*.4;T=Math.min(27,Math.max(20,T));
+    H+=(Math.random()-.5)*1.2;H=Math.min(65,Math.max(38,H));
+    data.push(T);if(data.length>30)data.shift();
+    vT.textContent=T.toFixed(1);vH.textContent=H.toFixed(0);
+    mq.textContent=`> PUBLISH casa/salon/dht11 {"temp":${T.toFixed(1)},"hum":${H.toFixed(0)}}`;
+    draw();
+  }
+  for(let i=0;i<30;i++)tick();
+  setInterval(tick,1200);
+})();
+
+/* ===== Terminal interactiva ===== */
+(()=>{
+  const out=document.getElementById('out'),inp=document.getElementById('cmd');
+  const hist=[];let hi=0;
+  const say=(t,c)=>{const d=document.createElement('div');if(c)d.className=c;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight};
+  const C={
+    help:()=>say('comandos: about · skills · projects · contact · whoami · ping · ls · neofetch · clear','h'),
+    about:()=>say('Teo Carrero Valls · 2º ASIX en La Salle Gràcia. Redes, sistemas e IoT.'),
+    whoami:()=>say('teo — futuro administrador de sistemas'),
+    skills:()=>say('redes (CCNA) · linux · windows server · mqtt · esp32 · home assistant · lua'),
+    projects:()=>say('1) Práctica IoT con Home Assistant\n2) Infraestructura para una asociación (ASIX)\n3) Juegos de Roblox: Throw Into The Deep, Dino Launch'),
+    contact:()=>say('linkedin.com/in/teo-carrero-valls-b83723320'),
+    ls:()=>say('iot/  proyecto-asix/  roblox/  obsidian-vault/  README.md'),
+    ping:()=>{say('PING teo.asix (127.0.0.1) 56 bytes de datos');['0.041','0.038','0.040'].forEach((t,i)=>setTimeout(()=>say(`64 bytes de teo.asix: icmp_seq=${i+1} ttl=64 tiempo=${t} ms`),350*(i+1)));setTimeout(()=>say('--- 3 enviados, 3 recibidos, 0% pérdida ---','p'),1400)},
+    neofetch:()=>say('  teo@asix\n  --------\n  OS: Mente curiosa 2.0\n  Shell: bash\n  Curso: 2º ASIX\n  Centro: La Salle Gràcia\n  Foco: Redes · IoT\n  Café: infinito','p'),
+    clear:()=>{out.innerHTML=''},
+    sudo:()=>say('teo no está en el archivo sudoers. Este incidente será reportado. 😉','e')
+  };
+  say('Bienvenido. Escribe "help" para ver los comandos.','h');
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      const v=inp.value.trim();if(!v)return;
+      hist.push(v);hi=hist.length;
+      say('teo@asix:~$ '+v,'p');
+      const k=v.split(' ')[0].toLowerCase();
+      (C[k]||(()=>say(`bash: ${k}: comando no encontrado`,'e')))();
+      inp.value='';
+    } else if(e.key==='ArrowUp'){if(hi>0){hi--;inp.value=hist[hi]}e.preventDefault()}
+    else if(e.key==='ArrowDown'){if(hi<hist.length-1){hi++;inp.value=hist[hi]}else{hi=hist.length;inp.value=''}e.preventDefault()}
+  });
+})();
+</script>
+</body>
+</html>
