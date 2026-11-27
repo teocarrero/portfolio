@@ -75,6 +75,10 @@ h2 em{font-weight:400}
 h3.k{font:500 12.5px var(--mono);color:var(--mute);margin:0 0 14px;text-transform:uppercase;letter-spacing:.08em}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
 .chips span{font:400 13px var(--mono);border:1px solid var(--ink);padding:4px 10px;background:var(--paper)}
+.chips span.key{background:var(--ink);color:var(--paper);font-weight:500}
+.chips span.key::before{content:"★ ";color:var(--sig)}
+.legend{font:400 12px var(--mono);color:var(--mute);margin:-6px 0 34px}
+.legend b{color:var(--sig)}
 .chips.soft span{border-style:dashed;border-color:var(--mute);color:#3b392f}
 
 /* proyectos */
@@ -171,6 +175,7 @@ footer{border-top:1px solid var(--ink);padding:22px 0;font:400 12.5px var(--mono
     <div>
       <h3 class="k">Stack</h3>
       <div class="chips" id="stack"></div>
+      <p class="legend"><b>★</b> = lo que más domino y uso en mis proyectos</p>
       <h3 class="k">Soft skills</h3>
       <div class="chips soft" id="soft"></div>
     </div>
@@ -358,10 +363,11 @@ footer{border-top:1px solid var(--ink);padding:22px 0;font:400 12.5px var(--mono
 
 <script>
 const skills=[["Redes (CCNA)",75],["Administración de sistemas",70],["IoT · MQTT · Home Assistant",70],["Electrónica con ESP32",60],["HTML · CSS · JavaScript",70],["Documentación técnica",80]];
-const stack=["Cisco / CCNA","Linux","Windows Server","TCP/IP","VLANs","Home Assistant","MQTT","ESP32","DHT11","Arduino IDE","Obsidian","Git","HTML","CSS","JavaScript","VirtualBox","VS Code","Bases de datos"];
-const soft=["trabajo en equipo","resolución de problemas","autodidacta","documentación"];
+const key=["Cisco / CCNA","Linux","Windows Server","TCP/IP","VLANs","Home Assistant","MQTT","ESP32"];
+const stack=[...key,"DHT11","Arduino IDE","Obsidian","Git","HTML","CSS","JavaScript","VirtualBox","VS Code","Bases de datos"];
+const soft=["trabajo en equipo","resolución de problemas","autodidacta","documentación","constancia","comunicación","adaptabilidad","inglés (Erasmus en Dublín)","atención al detalle","aprendizaje continuo"];
 document.getElementById('bars').innerHTML=skills.map(([n,v])=>`<li><span>${n}</span><span class="v">${v}%</span><span class="seg">${Array.from({length:20},(_,i)=>`<i class="${i<v/5?'on':''}"></i>`).join('')}</span></li>`).join('');
-document.getElementById('stack').innerHTML=stack.map(s=>`<span>${s}</span>`).join('');
+document.getElementById('stack').innerHTML=stack.map(s=>`<span${key.includes(s)?' class="key"':''}>${s}</span>`).join('');
 document.getElementById('soft').innerHTML=soft.map(s=>`<span>${s}</span>`).join('');
 
 // demo sensor
