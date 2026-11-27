@@ -164,7 +164,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
     <div>
       <span class="tag"><i class="dot"></i> Haciendo prácticas en AWERTY</span>
       <h1>Hola, soy <span class="grad">Teo Carrero</span>.</h1>
-      <div class="typed"><span id="typed"></span><span class="caret"></span></div>
+      <div class="typed">&gt; <b>administrador de sistemas</b></div>
       <p class="lead">Estudiante de ASIX en La Salle Gràcia. Me gusta que las redes funcionen, que los sensores hablen entre sí y construir cosas que de verdad se puedan tocar, desde un ESP32 midiendo temperatura hasta un servidor montado pieza a pieza.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">▶ Ver proyectos</a>
@@ -337,24 +337,6 @@ for(let k=0;k<8;k++){const d=tr.t-k*4;if(d<0)break;const p=at(tr,d);x.fillStyle=
 if(!reduce)requestAnimationFrame(f);
 }
 f();
-})();
-
-/* ===== Texto que se escribe ===== */
-(()=>{
-  const el=document.getElementById('typed');
-  const lines=['redes <b>&amp;</b> sistemas','IoT con <b>ESP32 + MQTT</b>','infraestructura <b>documentada</b>','futuro <b>administrador de sistemas</b>'];
-  let l=0,i=0,del=false;
-  function t(){
-    const s=lines[l].replace(/<[^>]+>/g,'');
-    // escribimos con etiquetas respetadas
-    const full=lines[l];
-    let out='',visible=0,inTag=false;
-    for(const ch of full){ if(ch==='<')inTag=true; out+=ch; if(ch==='>'){inTag=false;continue} if(!inTag){visible++; if(visible>=i)break} }
-    el.innerHTML='> '+out;
-    if(!del){ if(i<s.length+4){i++;setTimeout(t,70)} else {del=true;setTimeout(t,1400)} }
-    else { if(i>0){i-=2;if(i<0)i=0;setTimeout(t,30)} else {del=false;l=(l+1)%lines.length;setTimeout(t,300)} }
-  }
-  t();
 })();
 
 /* ===== Reveal, contadores y barras ===== */
