@@ -136,6 +136,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 .rv{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.proj .live{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
 </style>
 </head>
 <body>
@@ -147,7 +148,6 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
   <div class="wrap">
     <a class="logo" href="#top">teo<span>@</span>asix:~$</a>
     <ul>
-      <li><a href="#about">sobre-mi</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#projects">proyectos</a></li>
       <li><a href="#path">trayectoria</a></li>
@@ -168,40 +168,18 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
       <div class="btns">
         <a class="btn primary" href="#projects">▶ Ver proyectos</a>
         <a class="btn" href="https://www.linkedin.com/in/teo-carrero-valls-b83723320" target="_blank" rel="noopener">in LinkedIn</a>
-        <a class="btn" href="#terminal">&gt;_ Abrir terminal</a>
       </div>
       <div class="stats">
         <div class="stat"><b data-n="2">0</b><span>curso de ASIX</span></div>
-        <div class="stat"><b data-n="5">0</b><span>proyectos</span></div>
+        <div class="stat"><b data-n="2">0</b><span>proyectos</span></div>
         <div class="stat"><b data-n="4">0</b><span>fases de IoT</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section id="about"><div class="wrap">
-    <div class="sec-h rv">01 // sobre-mi</div>
-    <h2 class="rv">Administración de sistemas con mentalidad de maker</h2>
-    <div class="grid g2c">
-      <div class="card about rv">
-        <p>Curso <strong>2º de ASIX</strong> (Administración de Sistemas Informáticos en Red) en <strong>La Salle Gràcia</strong>. Me muevo entre la teoría de redes (módulo CCNA) y la práctica: montar infraestructura, documentarla y que funcione de verdad.</p>
-        <p>Trabajo en equipo en proyectos reales de curso, desde una <strong>infraestructura completa para una asociación</strong> hasta una <strong>práctica IoT con Home Assistant, ESP32 y MQTT</strong>. Además tengo en GitHub mis prácticas de bases de datos, hardware y desarrollo web.</p>
-        <p>Documento todo lo que hago (mi vault de Obsidian es mi segundo cerebro) porque un sistema que no está documentado no está terminado.</p>
-      </div>
-      <div class="card kv rv">
-        <div><span>nombre</span><em>Teo Carrero Valls</em></div>
-        <div><span>estudios</span><em>ASIX · La Salle Gràcia</em></div>
-        <div><span>ubicación</span><em>Sant Feliu de Llobregat</em></div>
-        <div><span>idiomas</span><em>Castellano · Català</em></div>
-        <div><span>foco</span><em>redes · sistemas · IoT</em></div>
-        <div><span>estado</span><em>● prácticas en AWERTY</em></div>
-      </div>
-    </div>
-  </div></section>
-
   <!-- SKILLS -->
   <section id="skills"><div class="wrap">
-    <div class="sec-h rv">02 // skills</div>
+    <div class="sec-h rv">01 // skills</div>
     <h2 class="rv">Lo que uso a diario</h2>
     <div class="grid g2c">
       <div class="card rv">
@@ -233,7 +211,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 
   <!-- PROJECTS -->
   <section id="projects"><div class="wrap">
-    <div class="sec-h rv">03 // proyectos</div>
+    <div class="sec-h rv">02 // proyectos</div>
     <h2 class="rv">Cosas que he construido</h2>
     <div class="grid g3c" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
       <article class="card proj rv">
@@ -243,6 +221,15 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
         <p>Sistema domótico por fases con sensores propios conectados a Home Assistant por MQTT.</p>
         <ul><li>ESP32 + sensor DHT11 de temperatura y humedad</li><li>Comunicación vía broker MQTT</li><li>Paneles y automatizaciones en Home Assistant</li><li>Trabajo en pareja con entrega en vídeo</li></ul>
         <div class="chips"><span class="chip">ESP32</span><span class="chip">MQTT</span><span class="chip">Home Assistant</span></div>
+      <div class="live" id="live">
+      <div class="top"><span>// demo en vivo · simulación del sensor del proyecto IoT</span><span>topic: <b>casa/salon/dht11</b></span></div>
+      <div class="vals">
+        <div><strong id="vT">--</strong><small>temperatura °C</small></div>
+        <div><strong id="vH">--</strong><small>humedad %</small></div>
+      </div>
+      <canvas id="spark" height="110"></canvas>
+      <div class="mqtt" id="mq">&gt; esperando mensaje MQTT…</div>
+    </div>
       </article>
       <article class="card proj rv">
         <div class="ico">🏢</div>
@@ -254,27 +241,11 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
       </article>
     </div>
 
-    <div class="card live rv" id="live">
-      <div class="top"><span>// demo en vivo · simulación del sensor del proyecto IoT</span><span>topic: <b>casa/salon/dht11</b></span></div>
-      <div class="vals">
-        <div><strong id="vT">--</strong><small>temperatura °C</small></div>
-        <div><strong id="vH">--</strong><small>humedad %</small></div>
-      </div>
-      <canvas id="spark" height="110"></canvas>
-      <div class="mqtt" id="mq">&gt; esperando mensaje MQTT…</div>
-    </div>
-
-    <div class="sec-h rv" style="margin-top:46px">// más proyectos en GitHub</div>
-    <div class="grid g3c">
-      <a class="card proj rv" href="https://github.com/teocarrero/CV-Teo-Carrero-Valls-p-gina-web" target="_blank" rel="noopener"><div class="ico">🌐</div><h3>CV en formato web</h3><p>Mi currículum convertido en página web, maquetada a mano.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span></div></a>
-      <a class="card proj rv" href="https://github.com/teocarrero/BBDD-per-un-perruqueria" target="_blank" rel="noopener"><div class="ico">🗄️</div><h3>Base de datos para una peluquería</h3><p>Diseño de la base de datos de un local pequeño.</p><div class="chips"><span class="chip">Bases de datos</span><span class="chip">Diseño</span></div></a>
-      <a class="card proj rv" href="https://github.com/teocarrero/Muntatge-i-desmuntatge-d-un-servidor" target="_blank" rel="noopener"><div class="ico">🖥️</div><h3>Montaje y desmontaje de un servidor</h3><p>Práctica de hardware: montar y desmontar un servidor paso a paso.</p><div class="chips"><span class="chip">Hardware</span><span class="chip">Servidores</span></div></a>
-    </div>
-  </div></section>
+    </div></section>
 
   <!-- PATH -->
   <section id="path"><div class="wrap">
-    <div class="sec-h rv">04 // trayectoria</div>
+    <div class="sec-h rv">03 // trayectoria</div>
     <h2 class="rv">Camino recorrido</h2>
     <div class="tl">
       <div class="it rv"><div class="when">2025 → 2027</div><h4>CFGS ASIX · La Salle Gràcia</h4><p>Administración de Sistemas Informáticos en Red. Módulo de redes con preparación CCNA, proyecto de ciclo en grupo y prácticas de IoT.</p></div>
@@ -286,7 +257,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 
   <!-- TERMINAL -->
   <section id="terminal"><div class="wrap">
-    <div class="sec-h rv">05 // terminal</div>
+    <div class="sec-h rv">04 // terminal</div>
     <h2 class="rv">Pregúntale a mi terminal</h2>
     <div class="term rv">
       <div class="bar2"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>teo@asix: ~</span></div>
@@ -297,7 +268,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 
   <!-- CONTACT -->
   <section id="contact"><div class="wrap contact">
-    <div class="sec-h rv">06 // contacto</div>
+    <div class="sec-h rv">05 // contacto</div>
     <h2 class="rv">¿Hablamos?</h2>
     <p class="rv">Si buscas a alguien con ganas de aprender, que documenta lo que hace y que no se rinde hasta que el ping responde, escríbeme.</p>
     <div class="btns rv">
@@ -309,32 +280,55 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 <footer>© 2026 Teo Carrero Valls · hecho a mano con HTML, CSS y JS · sin frameworks</footer>
 
 <script>
-/* ===== Red de nodos (fondo) ===== */
-(()=>{
-  const c=document.getElementById('net'),x=c.getContext('2d');
-  let W,H,P=[],m={x:-999,y:-999};
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function rs(){W=c.width=innerWidth;H=c.height=innerHeight;
-    const n=Math.min(90,Math.floor(W*H/18000));
-    P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}));}
-  addEventListener('resize',rs);rs();
-  addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
-  function f(){
-    x.clearRect(0,0,W,H);
-    for(const p of P){
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
-      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);
-      if(d<110){p.x+=dx/d*1.2;p.y+=dy/d*1.2}
-      x.fillStyle='rgba(77,240,196,.7)';x.beginPath();x.arc(p.x,p.y,1.6,0,7);x.fill();
-    }
-    for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){
-      const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);
-      if(d<140){x.strokeStyle=`rgba(108,140,255,${(1-d/140)*.35})`;x.lineWidth=1;x.beginPath();x.moveTo(P[i].x,P[i].y);x.lineTo(P[j].x,P[j].y);x.stroke()}
-    }
-    if(!reduce)requestAnimationFrame(f);
-  }
-  f();
+/* ===== Fondo: placa de circuito con paquetes de datos ===== */
+(function bg(){
+const c=document.getElementById('net'),x=c.getContext('2d');
+const G=40,cols=['77,240,196','108,140,255','255,92,168'];
+let W,H,T=[],m={x:-999,y:-999};
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function rs(){
+W=c.width=innerWidth;H=c.height=innerHeight;
+const cx=Math.ceil(W/G),cy=Math.ceil(H/G);T=[];
+const n=Math.min(36,Math.floor(W*H/32000));
+for(let i=0;i<n;i++){
+let gx=Math.floor(Math.random()*cx),gy=Math.floor(Math.random()*cy),horiz=Math.random()<.5;
+const pts=[[gx,gy]],segs=2+Math.floor(Math.random()*3);
+for(let k=0;k<segs;k++){
+const len=(2+Math.floor(Math.random()*6))*(Math.random()<.5?-1:1);
+if(horiz)gx=Math.max(0,Math.min(cx,gx+len));else gy=Math.max(0,Math.min(cy,gy+len));
+pts.push([gx,gy]);horiz=!horiz;
+}
+const xy=pts.map(p=>[p[0]*G,p[1]*G]);let L=0;const ds=[0];
+for(let j=1;j<xy.length;j++){L+=Math.hypot(xy[j][0]-xy[j-1][0],xy[j][1]-xy[j-1][1]);ds.push(L)}
+if(L>=G)T.push({xy,ds,L,col:cols[i%3],t:Math.random()*L,v:.6+Math.random()*1.1});
+}
+}
+function at(tr,d){
+for(let j=1;j<tr.ds.length;j++)if(d<=tr.ds[j]){
+const k=(d-tr.ds[j-1])/((tr.ds[j]-tr.ds[j-1])||1);
+return[tr.xy[j-1][0]+(tr.xy[j][0]-tr.xy[j-1][0])*k,tr.xy[j-1][1]+(tr.xy[j][1]-tr.xy[j-1][1])*k];
+}
+return tr.xy[tr.xy.length-1];
+}
+addEventListener('resize',rs);rs();
+addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+function f(){
+x.clearRect(0,0,W,H);
+for(let gx=0;gx<=W;gx+=G)for(let gy=0;gy<=H;gy+=G){
+const d=Math.hypot(gx-m.x,gy-m.y),al=.10+Math.max(0,1-d/220)*.55;
+x.fillStyle=`rgba(140,170,255,${al})`;x.fillRect(gx-1,gy-1,2,2);
+}
+for(const tr of T){
+x.strokeStyle=`rgba(${tr.col},.16)`;x.lineWidth=1.5;x.beginPath();
+tr.xy.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();
+x.strokeStyle=`rgba(${tr.col},.35)`;
+for(const p of [tr.xy[0],tr.xy[tr.xy.length-1]]){x.beginPath();x.arc(p[0],p[1],4,0,7);x.stroke()}
+tr.t=(tr.t+tr.v)%tr.L;
+for(let k=0;k<14;k++){const d=tr.t-k*4;if(d<0)break;const p=at(tr,d);x.fillStyle=`rgba(${tr.col},${(1-k/14)*.9})`;x.fillRect(p[0]-2,p[1]-2,4,4)}
+}
+if(!reduce)requestAnimationFrame(f);
+}
+f();
 })();
 
 /* ===== Texto que se escribe ===== */
